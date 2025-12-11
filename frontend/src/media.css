@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/*
+	Responsive helpers and overrides.
+	This file adds a few small utilities and media queries to make
+	the header, topbar and hero/carousel scale nicely on tablet and mobile.
+*/
+
+:root{
+	--space-lg: 30px;
+	--space-md: 20px;
+	--space-sm: 16px;
+}
+
+/* Small utility classes used across components (matches markup like mx-30 / px-30) */
+.mx-30{ margin-left: var(--space-lg); margin-right: var(--space-lg); }
+.px-30{ padding-left: var(--space-lg); padding-right: var(--space-lg); }
+
+/* Provide a small component layer so Tailwind utilities still apply well */
+@layer components{
+	/* header/logo sizing tweaks */
+	.logo img{ max-height:64px; width:auto; }
+	.headerIcon{ width:56px; height:48px;}
+	.headerInfo{ text-align:left; }
+}
+
+/* Desktop -> Tablet adjustments */
+@media (max-width: 1024px){
+
+	.mx-30{ margin-left: var(--space-md); margin-right: var(--space-md); }
+	.px-30{ padding-left: var(--space-md); padding-right: var(--space-md); }
+	.headerIcon{ width:30px; height:40px; }
+}
+
+/* Tablet & Mobile: stack header, center elements, scale hero text */
+@media (max-width: 768px){
+	.mx-30{ margin-left: var(--space-sm); margin-right: var(--space-sm); }
+	.px-30{ padding-left: var(--space-sm); padding-right: var(--space-sm); }
+
+	/* Make the header stacked rather than a long horizontal row */
+	.header > div{ display:flex; flex-direction:column; align-items:center; gap:12px; }
+	.logo{ width:100%; display:flex; justify-content:center; }
+	.logo img{ max-height:56px; }
+
+	/* Heading area should stack and center text */
+	.heading{ width:100%; display:flex; flex-direction:column; align-items:center; gap:8px; }
+	.heading .flex{ justify-content:center; }
+	.headerInfo{ align-items:center; text-align:center; }
+
+	/* Ensure the CTA aligns under the header on small screens */
+	.quotes{ width:100%; display:flex; justify-content:center; padding-top:6px; }
+
+	/* Topbar: wrap nav items instead of overflowing */
+	.bg-\#041233 nav, nav{ flex-wrap:wrap; justify-content:center; gap:8px; }
+
+	/* Make hero/carousel less tall on small screens for better UX */
+	.h-screen{ min-height:70vh; }
+
+	/* Scale down oversized text classes used in components */
+	.text-5xl{ font-size:1.9rem; line-height:1.05; }
+	.md\:text-7xl{ font-size:2.4rem; }
+	.text-xl{ font-size:1rem; }
+}
+
+/* Further header & carousel collapse for very small screens */
+@media (max-width: 1000px){
+	/* Hide non-essential header info (address, mail) to keep header compact */
+	.header .heading > div:nth-child(1),
+	.header .heading > div:nth-child(2){
+		display: none;
+	}
+	
+
+	/* Keep the CTA visible and centered */
+	.header .heading > div:nth-child(3),.logo-div{
+		display:flex; width:100%; justify-content:center;
+	}
+
+	/* Shrink logo further */
+	.logo img{ max-height:44px; }
+
+	/* Carousel: reduce hero height and padding for mobile to avoid large empty space */
+	.h-screen{ min-height:55vh; height:auto; }
+	.relative.z-10 .text-center{ padding-left:1rem; padding-right:1rem; }
+
+	/* Top layer (small label) should be compact */
+	.absolute.top-0.left-0.right-0.py-3{ padding-top:0.35rem; padding-bottom:0.35rem; }
+
+	/* Buttons and indicators: slightly smaller */
+	.relative.z-10 button{ padding:0.5rem 0.75rem; }
+	.absolute.bottom-8{ bottom:1.25rem; }
+}
+
+/* Information section tweaks */
+@media (max-width: 768px){
+	.information{ padding:1rem 0; }
+	.IconSize{ font-size:2.25rem; }
+	.h3{ font-size:1.125rem; }
+	.paragraph{ font-size:0.95rem; padding-left:0.5rem; padding-right:0.5rem }
+}
+
+@media (min-width: 769px){
+	.information{ display:flex; flex-direction:column; align-items:flex-start; text-align:left; padding:1.25rem; }
+	.information.text-center{ align-items:center }
+	.IconSize{ font-size:3.5rem; }
+}
+
+/* small utility to ensure icons don't overflow */
+.information .IconSize{ line-height:1; }
+
+/* ABOUT OUR COMPANY: stack image above content on small screens */
+@media (max-width: 768px){
+	.h-\[600px\]{ height: auto !important; }
+	.p-16{ padding: 1.25rem !important; }
+	.w-1\/2{ width: 100% !important; }
+	.bg-white img{ width: 100%; height: auto; object-fit: cover; }
+	.aboutIcons{ margin-top:0.5rem }
+	.aboutIcons .IconSize{ font-size:2.25rem }
+}
+
+/* GET A QUOTE: reduce paddings and center CTA on mobile */
+@media (max-width: 768px){
+	.h-3\/7{ min-height: auto; }
+	.p-20{ padding: 2rem !important; }
+	.px-96{ padding-left:1rem !important; padding-right:1rem !important; }
+	.h-3\/7 h1{ font-size:1.25rem; }
+	.h-3\/7 button{ padding:0.5rem 0.75rem; font-size:0.9rem }
+}
+.OurserviceDiv img{
+	width: 100%;
+	object-fit: cover;
+}
+.AboutDiv img{
+	object-fit: cover;
+}
+/* OUR SERVICES: make service cards wrap and be full width on small screens */
+@media (max-width: 768px){
+	.OurserviceDiv{margin: 5px 0; }
+	/* .OurserviceDiv:nth-child(even){ flex-direction:column; align-items:stretch; height:auto; width:100% !important; } */
+	.OurserviceDiv:nth-child(even){ flex-direction: row;  align-items:stretch; height:auto; width:100% !important; }
+	.OurserviceDiv:nth-child(even) img{ height:auto; width:100%; object-fit:cover }
+	.OurserviceDiv:nth-child(odd){ @apply hidden}
+	.OurserviceDiv img{  height:auto; object-fit:cover }
+	.OurserviceDiv .p-4{ padding:0.5rem }
+}
+
+/* TESTIMONIAL: ensure card is full width on mobile and spacing reduced */
+@media (max-width: 768px){
+	section.relative{ background-attachment: scroll !important; }
+	.max-w-7xl .px-6{ padding-left:1rem; padding-right:1rem }
+	.bg-white.rounded-lg{ padding:1rem !important }
+}
+
+/* OUR TEAM: stack members and remove full-screen height on mobile */
+@media (max-width: 768px){
+	.w-full.h-screen{ height:auto !important }
+	.w-full.h-screen .flex{ flex-wrap:wrap; gap:1rem }
+	.TeamMem{ width:100% !important; }
+	.TeamMem img{ width:100%; height:auto; object-fit:cover }
+	.TeamMem .h3{ font-size:1.1rem }
+}
+
+/* COMPANY SUCCESS: wrap facts and center on small screens */
+@media (max-width: 768px){
+	.pattern-bg .flex{ flex-wrap:wrap; justify-content:center }
+	.fact{ width:45% !important; }
+	.factNum{ font-size:2.75rem }
+}
+
+/* CONSULTATION: stack image and form on mobile, make inputs full width */
+@media (max-width: 768px){
+	form .w-5\/7{ width:100% !important; flex-direction:column !important; }
+	form .w-5\/7 img{ width:100% !important; height:auto !important }
+	form .w-5\/7 .w-1\/2{ width:100% !important }
+	form input, form select, form textarea{ width:100% !important; box-sizing:border-box }
+	form .px-5{ padding-left:1rem; padding-right:1rem }
+}
+
+/* PARTNERS: allow logos to wrap and reduce min width on small screens */
+@media (max-width: 640px){
+	.min-w-\[120px\]{ min-width:80px !important }
+	.h-16{ height:3rem !important }
+}
+
+/* FOOTER: reduce padding and text size on small screens */
+@media (max-width: 640px){
+	footer.py-16{ padding-top:1.5rem !important; padding-bottom:1.5rem !important }
+	.text-white.text-lg{ font-size:1rem }
+	.max-w-7xl .px-6{ padding-left:0.75rem; padding-right:0.75rem }
+}
+/* Very small phones */
+@media (max-width: 420px){
+	.headerIcon{ width:40px; height:36px; }
+	.logo img{ max-height:48px; }
+	.text-5xl{ font-size:1.6rem; }
+	.md\:text-7xl{ font-size:2rem; }
+}
+
+/* CAROUSEL: ensure visibility on all screen sizes */
+@media (max-width: 1024px){
+	.relative.w-full.h-full { min-height: 55vh; height: auto; }
+}
+
+@media (max-width: 768px){
+	.relative.w-full.h-full { min-height: 45vh; height: auto; }
+}
+
+@media (max-width: 640px){
+	.relative.w-full.h-full { min-height: 40vh; height: auto; }
+}
+
+/* Mobile menu specific styling */
+@layer components{
+	/* Ensure the mobile nav dropdown sits above content and is easy to tap */
+	.bg-\#041233 .mobile-nav-overlay{
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 100%;
+		background-color: #041233;
+		z-index: 60;
+		padding: 0.75rem 1rem;
+	}
+
+	/* small spacing for nav links when in stacked mobile mode */
+	nav.text-gray-300 a{
+		padding: 0.35rem 0.25rem;
+		display: inline-block;
+	}
+}
+/* media css file  */
+@media (max-width: 768px){
+
+}
+@media (width >= 40rem) {
+
+}

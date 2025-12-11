@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+::root {
+  @apply font-sans antialiased p-0 m-0 text-gray-900 bg-white;
+}
+
+.header {
+  @apply w-full bg-white;
+}
+
+.headerIcon {
+  @apply w-14 h-12;
+}
+
+.headerInfo {
+  @apply font-semibold text-lg flex flex-col;
+}
+
+.information {
+  @apply flex flex-col items-center justify-center h-full p-4 hover:border-b-8 hover:border-blue-900 bg-white rounded-lg ease-in-out;
+}
+
+.TeamMem {
+  @apply flex flex-col mt-6 items-center bg-gray-100 border-2 border-gray-200 rounded-lg hover:scale-105 ease-in-out;
+}
+
+.fact {
+  @apply flex flex-col p-4
+}
+
+.factNum {
+  @apply p-4 text-7xl text-blue-900;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.par {
+  @apply text-5xl;
+}
+
+.factPar {
+  @apply px-4;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.IconSize {
+  @apply text-9xl text-blue-900;
+}
+
+.h3 {
+  @apply text-2xl font-semibold mt-4;
+}
+
+.h2 {
+  @apply md:text-4xl lg:text-5xl font-bold lg:mt-4 lg:mb-4 text-center ;
+}
+.hh {
+  @apply text-xl font-bold mt-2 mb-2 text-center;
+}
+
+
+.h4 {
+  @apply text-4xl font-bold mt-4 text-center;
+}
+
+.p {
+  @apply text-base font-normal text-center px-4;
+}
+
+.paragraph {
+  @apply text-lg font-semibold mt-4 text-center;
+}
+
+.aboutIcons {
+  @apply flex flex-col items-center justify-center;
+}
+
+.OurserviceDiv {
+  @apply h-40 flex bg-white border-gray-200 border-2;
+}
+
+.bg-img {
+  background-image: url(./assets/images/bg1.jpg);
+  background-size: cover;
+  background-position: fixed;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.pattern-bg {
+  background-image: url(./assets/images/pattern.png);
+  text-align: center;
+  padding: 85px 0 85px 0;
+}
+
+.bg {
+  padding: 55px 0;
+}
+
+@media (min-width:1100px) and (max-width:1250px)  {
+  
+  .hero {
+    min-height: 60vh
+  }
+
+  .container {
+    max-width: 1180px;
+    padding: 0 20px
+  }
+}
